@@ -2,16 +2,14 @@ import React, { useEffect, useState } from 'react'
 import BtnCounter from './btnCounter'
 
 function App() {
-  const [btnName, setBtnName] = useState('클릭2');
-  const clickBtn = () => {
-    setBtnName('클릭3');
-  }
+  const [condition, setCondidtion] = useState(false);
+  const toggle = () => setCondidtion(!condition);
+  const renderCondition = condition ? 'true' : 'false';
+
   return (
     <div className="App">
-      <BtnCounter click="클릭1"></BtnCounter>
-      <BtnCounter ></BtnCounter>
-      <BtnCounter click={btnName}></BtnCounter>
-      <button onClick={clickBtn}>누르면btnName바뀜</button>
+      <div>{renderCondition}</div>
+      <button onClick={toggle}>Toggle</button>
     </div>
   )
 }
