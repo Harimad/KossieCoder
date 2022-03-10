@@ -3,21 +3,22 @@ import Movie from './components/Movie'
 import MovieForm from './components/MovieForm'
 
 function App() {
-  const [movies, setMovies] = useState([
-    { title: 'TimLee1', year: 2000 },
-    { title: 'TimLee2', year: 2001 },
-    { title: 'TimLee3', year: 2002 },
-    { title: 'TimLee4', year: 2003 },
-    { title: 'TimLee5', year: 2004 },
-  ])
+  const [movies, setMovies] = useState([])
 
-  const renderMovies = movies.map((movie, idx) => {
-    return <Movie movie={movie} key={idx} />
-  })
+  const removeMovie = id => {
+    setMovies(movies.filter(movie => movie.id !== id))
+  }
+
+  const renderMovies = movies.length
+    ? movies.map(movie => {
+        return <Movie movie={movie} key={movie.id} removeMovie={removeMovie} />
+      })
+    : '영화를 추가해 주세요'
 
   const addMovie = movie => {
     setMovies([...movies, movie])
   }
+  console.log(movies)
 
   return (
     <div className="App">

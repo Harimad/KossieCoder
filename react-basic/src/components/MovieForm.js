@@ -11,7 +11,7 @@ const MovieForm = ({ addMovie }) => {
 
   const onSubmit = e => {
     e.preventDefault()
-    addMovie({ title: movieTitle, year: movieYear })
+    addMovie({ id: Date.now(), title: movieTitle, year: movieYear })
     resetInput()
   }
 
