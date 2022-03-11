@@ -9,6 +9,16 @@ const User = () => {
   const [spinner, setSpinner] = useState(true)
   const { id } = useParams()
 
+  const userDetail = spinner ? (
+    <Spinner />
+  ) : (
+    <div>
+      <div>{user.name}</div>
+      <div>{user.email}</div>
+      <div>{user.phone}</div>
+    </div>
+  )
+
   useEffect(() => {
     Axios.get('https://jsonplaceholder.typicode.com/users/' + id).then(
       response => {
@@ -17,10 +27,11 @@ const User = () => {
       }
     )
   }, [])
+
   return (
     <>
       <h1>User 정보</h1>
-      {spinner ? <Spinner /> : null}
+      {userDetail}
     </>
   )
 }
